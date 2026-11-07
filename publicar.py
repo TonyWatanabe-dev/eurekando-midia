@@ -27,6 +27,8 @@ for a in accounts:
 if not alvo: sys.exit("Nenhuma conta Eurekando encontrada nesta chave do Zernio.")
 print("Publicando em:", sorted(alvo))
 
+st, d = call("GET", "/posts?status=scheduled&limit=100")
+agendados = d.get("posts", []) if isinstance(d, dict) else []
 for p in json.load(open("posts.json", encoding="utf-8")):
     if SO and p["id"] != SO: continue
     plats = []
@@ -35,14 +37,21 @@ for p in json.load(open("posts.json", encoding="utf-8")):
         if plat == "youtube": e["platformSpecificData"] = {"title": p["titulo_youtube"], "visibility": "public"}
         if plat == "instagram": e["platformSpecificData"] = {"firstComment": p["comentario_fixado"]}
         plats.append(e)
-    body = {"content": p["legenda"], "mediaItems": [{"type": "video", "url": RAW + p["video"]}], "platforms": plats}
+    item = {"type": "video", "url": RAW + p["video"]}
+    if p.get("capa"): item["thumbnail"] = RAW + p["capa"]
+    body = {"content": p["legenda"], "mediaItems": [item], "platforms": plats}
     if "tiktok" in alvo:
         body["tiktokSettings"] = {"privacy_level": "PUBLIC_TO_EVERYONE", "allow_comment": True, "allow_duet": True,
                                   "allow_stitch": True, "content_preview_confirmed": True, "express_consent_given": True}
+        if p.get("capa"): body["tiktokSettings"]["video_cover_image_url"] = RAW + p["capa"]
     if p["quando"] == "agora": body["publishNow"] = True
     else: body["scheduledFor"], body["timezone"] = p["quando"], "America/Sao_Paulo"
     if DRY:
         print(f'[teste] {p["id"]} -> {p["quando"]} em {sorted(alvo)}'); continue
-    chave = str(uuid.uuid5(uuid.NAMESPACE_URL, RAW + p["video"]))
+    # substitui um agendamento antigo do mesmo vídeo (ex.: para trocar a capa)
+    for old in agendados:
+        if p["video"] in " ".join(m.get("url", "") for m in old.get("mediaItems", [])):
+            print("  removendo agendamento antigo", old["_id"], call("DELETE", f'/posts/{old["_id"]}')[0])
+    chave = str(uuid.uuid5(uuid.NAMESPACE_URL, RAW + p["video"] + "|" + p.get("capa", "")))
     st, r = call("POST", "/posts", body, {"Idempotency-Key": chave})
     print(p["id"], st, (r.get("post", {}).get("status") if isinstance(r, dict) else r))
