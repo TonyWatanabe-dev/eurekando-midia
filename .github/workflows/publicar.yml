@@ -2,6 +2,11 @@ name: Publicar no Zernio
 on:
   workflow_dispatch:
     inputs:
+      acao:
+        description: "publicar ou reagendar"
+        type: choice
+        options: [publicar, reagendar]
+        default: publicar
       teste:
         description: "Só testar (não publica)"
         type: boolean
@@ -15,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { lfs: false }
-      - run: python publicar.py
+      - run: python ${{ inputs.acao == 'reagendar' && 'reagendar.py' || 'publicar.py' }}
         env:
           TESTE: ${{ inputs.teste }}
           SO: ${{ inputs.so }}
