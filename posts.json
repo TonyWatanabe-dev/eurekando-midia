@@ -127,12 +127,13 @@
  },
  {
   "id": "eurekando_15_anzol",
-  "video": "eurekando_15_anzol.mp4",
+  "video": "eurekando_15_anzol_v2.mp4",
   "capa": "capa_15_anzol.png",
   "quando": "2026-11-20T12:00:00",
   "titulo_youtube": "Burrice ou armação: por que o peixe morde um anzol que ele tá vendo?",
   "legenda": "Burrice ou armação: por que o peixe morde um anzol que ele tá vendo?\n\nBurrice ou armação? O peixe enxerga o anzol e morde mesmo assim, e a culpa é de uma máquina de peças: cheiro, fio quase invisível, cor que some na água e um sensor de vibração no corpo. Acompanhe: ceva, linha invisível, cor que some, linha lateral e fisgada. Por que o vermelho some debaixo d'água? Pra que serve a linha lateral? Por que o bom pescador pisa leve? E aí, quem cai mais fácil em promoção: o peixe ou você? Comenta \"peixe\" ou \"eu\"!\n\nAviso: os personagens e cenas são caricaturas ilustrativas, sem relação com pessoas reais.\n\nFontes:\n- https://en.wikipedia.org/wiki/Lateral_line\n- https://themeateater.com/fish/gear-fish/understand-lateral-lines-to-help-you-catch-more-fish\n- https://en.wikipedia.org/wiki/Fishing_line\n- https://en.wikipedia.org/wiki/Underwater_vision\n\n#Eurekando #curiosidades #ciencia #pesca #peixes #biologia #shorts",
-  "comentario_fixado": "Quem cai mais fácil em promoção? Comenta \"peixe\" ou \"eu\" e manda pra aquele amigo que cai em todo golpe do WhatsApp."
+  "comentario_fixado": "Quem cai mais fácil em promoção? Comenta \"peixe\" ou \"eu\" e manda pra aquele amigo que cai em todo golpe do WhatsApp.",
+  "substitui": "eurekando_15_anzol.mp4"
  },
  {
   "id": "eurekando_16_mosquito",
