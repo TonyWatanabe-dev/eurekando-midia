@@ -50,7 +50,8 @@ for p in json.load(open("posts.json", encoding="utf-8")):
         print(f'[teste] {p["id"]} -> {p["quando"]} em {sorted(alvo)}'); continue
     # substitui um agendamento antigo do mesmo vídeo (ex.: para trocar a capa)
     for old in agendados:
-        if p["video"] in " ".join(m.get("url", "") for m in old.get("mediaItems", [])):
+        urls_old = " ".join(m.get("url", "") for m in old.get("mediaItems", []))
+        if p["video"] in urls_old or (p.get("substitui") and p["substitui"] in urls_old):
             print("  removendo agendamento antigo", old["_id"], call("DELETE", f'/posts/{old["_id"]}')[0])
     chave = str(uuid.uuid5(uuid.NAMESPACE_URL, RAW + p["video"] + "|" + p.get("capa", "")))
     st, r = call("POST", "/posts", body, {"Idempotency-Key": chave})
