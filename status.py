@@ -2,7 +2,7 @@
 import json, os, urllib.request
 KEY = os.environ["ZERNIO_API_KEY"]
 for st in ("published", "failed", "scheduled", "publishing", "partial"):
-    req = urllib.request.Request(f"https://zernio.com/api/v1/posts?status={st}&limit=20", headers={"Authorization": f"Bearer {KEY}"})
+    req = urllib.request.Request(f"https://zernio.com/api/v1/posts?status={st}&limit=100", headers={"Authorization": f"Bearer {KEY}"})
     try:
         d = json.loads(urllib.request.urlopen(req).read())
     except Exception as e:
