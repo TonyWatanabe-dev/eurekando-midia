@@ -226,11 +226,12 @@
   },
   {
     "id": "eurekando_34_zumbi2",
-    "video": "eurekando_34_zumbi2_cta.mp4",
+    "video": "eurekando_34_zumbi2_v2_cta.mp4",
     "capa": "capa_34_zumbi2.png",
     "quando": "2026-11-19T11:00:00",
     "titulo_youtube": "Zumbi no prédio EP.2: abri a porta pro Téo (A)",
     "legenda": "Zumbi no prédio, EP.2. Você escolheu abrir a porta pro Téo (versão A). Agora são dois na casa de máquinas, com dois litros e meio de água. Em calor extremo, o suor chega a 1 a 1,5 litro por hora: no pior caso, a água dura uma hora. E seu Jair está do outro lado da porta.\n\nA ou B? A: chamar o elevador pro térreo e fazer barulho lá embaixo. B: desligar o motor e ficar em silêncio. Comenta A ou B. A maioria decide o próximo episódio.\n\nE se curtiu, se inscreve pra não perder o EP.3.\n\n#Eurekando #ZumbiNoPredio #CienciaSemNocao #Sobrevivencia #Ficcao #Shorts",
-    "comentario_fixado": "A ou B? A: elevador pro térreo pra atrair o seu Jair. B: desligar o motor e esperar em silêncio. A maioria decide o próximo episódio."
+    "comentario_fixado": "A ou B? A: elevador pro térreo pra atrair o seu Jair. B: desligar o motor e esperar em silêncio. A maioria decide o próximo episódio.",
+    "substitui": "eurekando_34_zumbi2_cta.mp4"
   }
 ]
