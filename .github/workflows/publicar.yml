@@ -5,7 +5,7 @@ on:
       acao:
         description: "publicar ou reagendar"
         type: choice
-        options: [publicar, reagendar, status, retry]
+        options: [publicar, reagendar, status, retry, remover]
         default: publicar
       teste:
         description: "Só testar (não publica)"
@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { lfs: false }
-      - run: python ${{ inputs.acao == 'reagendar' && 'reagendar.py' || inputs.acao == 'status' && 'status.py' || inputs.acao == 'retry' && 'retry.py' || 'publicar.py' }}
+      - run: python ${{ inputs.acao == 'reagendar' && 'reagendar.py' || inputs.acao == 'status' && 'status.py' || inputs.acao == 'retry' && 'retry.py' || inputs.acao == 'remover' && 'remover.py' || 'publicar.py' }}
         env:
           TESTE: ${{ inputs.teste }}
           SO: ${{ inputs.so }}
