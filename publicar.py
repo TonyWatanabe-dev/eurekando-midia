@@ -31,8 +31,10 @@ st, d = call("GET", "/posts?status=scheduled&limit=100")
 agendados = d.get("posts", []) if isinstance(d, dict) else []
 for p in json.load(open("posts.json", encoding="utf-8")):
     if SO and p["id"] != SO: continue
+    redes = p.get("redes")          # opcional: ["youtube"] publica so no YouTube
     plats = []
     for plat, acc in alvo.items():
+        if redes and plat not in redes: continue
         e = {"platform": plat, "accountId": acc}
         if plat == "youtube": e["platformSpecificData"] = {"title": p["titulo_youtube"], "visibility": "public"}
         if plat == "instagram": e["platformSpecificData"] = {"firstComment": p["comentario_fixado"]}
@@ -40,7 +42,7 @@ for p in json.load(open("posts.json", encoding="utf-8")):
     item = {"type": "video", "url": RAW + p["video"]}
     if p.get("capa"): item["thumbnail"] = RAW + p["capa"]
     body = {"content": p["legenda"], "mediaItems": [item], "platforms": plats}
-    if "tiktok" in alvo:
+    if "tiktok" in alvo and (not redes or "tiktok" in redes):
         body["tiktokSettings"] = {"privacy_level": "PUBLIC_TO_EVERYONE", "allow_comment": True, "allow_duet": True,
                                   "allow_stitch": True, "content_preview_confirmed": True, "express_consent_given": True}
         if p.get("capa"): body["tiktokSettings"]["video_cover_image_url"] = RAW + p["capa"]
