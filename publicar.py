@@ -39,6 +39,7 @@ for p in json.load(open("posts.json", encoding="utf-8")):
         if plat == "youtube": e["platformSpecificData"] = {"title": p["titulo_youtube"], "visibility": "public"}
         if plat == "instagram": e["platformSpecificData"] = {"firstComment": p["comentario_fixado"]}
         plats.append(e)
+    print("  plataformas deste post:", [e["platform"] for e in plats])
     item = {"type": "video", "url": RAW + p["video"]}
     if p.get("capa"): item["thumbnail"] = RAW + p["capa"]
     body = {"content": p["legenda"], "mediaItems": [item], "platforms": plats}
